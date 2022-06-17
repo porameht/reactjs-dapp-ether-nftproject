@@ -4,15 +4,15 @@ import styled, { ThemeProvider } from "styled-components";
 import Button from "../Button";
 import { dark } from "../../styles/Themes";
 import Loading from "../Loading";
-import img from "../../assets/bg.gif";
-import Meeble from "../../assets/cc-zero.png";
+import img from "../../assets/bg1.gif";
+import LogoFooter from "../../assets/cc-zero.png";
 const Carousel = lazy(() => import("../Carousel"));
 
 const Section = styled.section`
   min-height: 100vh;
   width: 100%;
   /* opacity: 0.9; */
-  /* background-color: ${(props) => props.theme.text}; */
+  background-color: ${(props) => props.theme.text};
   background-image: url(${img});
   background-size: cover;
   display: flex;
@@ -134,26 +134,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const Bottom = styled.div`
-  width: 75%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  a {
-    text-decoration: underline;
-  }
-  @media (max-width: 48em) {
-    flex-direction: column;
-    width: 100%;
-
-    span {
-      margin-bottom: 1rem;
-    }
-  }
-`;
-
 const About = () => {
   return (
     <Section id="about">
@@ -173,25 +153,28 @@ const About = () => {
             Ethereum blockchain and hosted on IPFS.
           </SubText>
           <SubTextLight>
-            With more than 200+ hand drawn traits, each NFT is unique and comes
-            with a membership to an exclusive group of successful investors.
-            Join an ambitious ever-growing community with multiple benefits and
+            With more than and drawn traits, each NFT is unique and comes with a
+            membership to an exclusive group of successful investors. Join an
+            ambitious ever-growing community with multiple benefits and
             utilities.
           </SubTextLight>
+
           <span>
             &copy; {new Date().getFullYear()} Meeble Club. All rights reserved.
           </span>
-
-          <span>
-            Made with &#10084; by{" "}
-            <a
-              href="http://youtube.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Meeble
-            </a>
-          </span>
+          <ButtonContainer>
+            <img src={LogoFooter} width="70"></img>
+            <span>
+              Made with &#10084; by{" "}
+              <a
+                href="http://youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Meeble
+              </a>
+            </span>
+          </ButtonContainer>
         </Box>
       </Container>
     </Section>

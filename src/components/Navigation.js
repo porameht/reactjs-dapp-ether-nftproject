@@ -7,8 +7,8 @@ import Ether from "../assets/social-media-icons/Ether_logo.png";
 import OpenSea from "../assets/social-media-icons/Opensea_logo.png";
 
 const Section = styled.section`
-  width: 100vw;
-  background-color: #4079dc;
+  width: 100%;
+  /* background-color: #4079dc; */
 `;
 
 const NavBar = styled.nav`
@@ -18,11 +18,9 @@ const NavBar = styled.nav`
   width: 85%;
   /* height: ${(props) => props.theme.navHeight}; */
   margin: 0 auto;
-
   .mobile {
     display: none;
   }
-
   @media (max-width: 64em) {
     .desktop {
       display: none;
@@ -50,7 +48,6 @@ const Menu = styled.ul`
     z-index: 50;
     background-color: ${(props) => `rgba(${props.theme.bodyRgba},0.85)`};
     backdrop-filter: blur(2px);
-
     transform: ${(props) =>
       props.click ? "translateY(0)" : `translateY(1000%)`};
     transition: all 0.3s ease;
@@ -61,24 +58,62 @@ const Menu = styled.ul`
   }
 `;
 
-const LogoLink = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  filter: drop-shadow(1px 2px 5px Black);
-  padding-top: 10px;
-
-  @media (max-width: 48em) {
-    width: 100%;
-    padding-top: 10px;
-  }
-`;
+// const LogoLink = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   /* align-items: center; */
+//   filter: drop-shadow(1px 2px 5px Black);
+//   padding-top: 10px;
+//   @media (max-width: 48em) {
+//     width: 100%;
+//     padding-top: 10px;
+//   }
+// `;
 
 const MenuItem = styled.li`
-  margin: 0 3rem;
+  margin: 0 1rem;
   color: ${(props) => props.theme.text};
   cursor: pointer;
+  :hover {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes shake {
+    0% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+      transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg);
+    }
+  }
 
   &::after {
     content: " ";
@@ -94,18 +129,16 @@ const MenuItem = styled.li`
 
   @media (max-width: 64em) {
     margin: 1rem 0;
-
     &::after {
       display: none;
     }
   }
 `;
+
 const HamburgerMenu = styled.span`
   width: ${(props) => (props.click ? "2rem" : "1.5rem")};
-
   height: 2px;
   background: ${(props) => props.theme.text};
-
   position: absolute;
   top: 2rem;
   left: 50%;
@@ -152,7 +185,6 @@ const Navigation = ({ accounts, setAccounts }) => {
   const isConnected = Boolean(accounts[0]);
 
   async function connectAccount() {
-    console.log("fff");
     if (window.ethereum) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -173,7 +205,7 @@ const Navigation = ({ accounts, setAccounts }) => {
   };
 
   return (
-    <Section id="navigation">
+    <>
       <NavBar>
         <Logo />
         <HamburgerMenu click={click} onClick={() => setClick(!click)}>
@@ -185,29 +217,29 @@ const Navigation = ({ accounts, setAccounts }) => {
           <MenuItem onClick={() => scrollTo("about")}></MenuItem> */}
           <MenuItem>
             <a
-              href="http://youtube.com/codebucks"
+              href="http://youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={Twitter} width="100px"></img>
+              <img src={Twitter} width="80px"></img>
             </a>
           </MenuItem>
           <MenuItem>
             <a
-              href="http://youtube.com/codebucks"
+              href="http://youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={Ether} width="100px"></img>
+              <img src={Ether} width="80px"></img>
             </a>
           </MenuItem>
           <MenuItem>
             <a
-              href="http://youtube.com/codebucks"
+              href="http://youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={OpenSea} width="100px"></img>
+              <img src={OpenSea} width="70px"></img>
             </a>
           </MenuItem>
 
@@ -233,9 +265,10 @@ const Navigation = ({ accounts, setAccounts }) => {
             <Button text="Connect Wallet" onClick={connectAccount} />
           </div>
         )} */}
+
         {isConnected ? (
           <div>
-            <Button text="Connect Wallet" />
+            <p>Connected</p>
           </div>
         ) : (
           <div>
@@ -243,7 +276,7 @@ const Navigation = ({ accounts, setAccounts }) => {
           </div>
         )}
       </NavBar>
-    </Section>
+    </>
   );
 };
 

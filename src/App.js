@@ -16,8 +16,7 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={light}>
         {/* <Suspense fallback={<Loading />}> */}
-        <Navigation accounts={accounts} setAccounts={setAccounts} />
-        <Home />
+        <Home accounts={accounts} setAccounts={setAccounts} />
         <About />
         {/* <ScrollToTop scrollPosition={y}/> */}
         <ScrollToTop /> {/* </Suspense> */}

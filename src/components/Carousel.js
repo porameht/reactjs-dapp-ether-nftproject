@@ -125,7 +125,7 @@ const Carousel = () => {
         }}
         modules={[EffectCards, Navigation, Autoplay]}
         // , Pagination => count img
-        navigation={true}
+        // navigation={true}
         effect={"cards"}
         grabCursor={true}
         className="mySwiper"

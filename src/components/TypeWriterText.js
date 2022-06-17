@@ -4,12 +4,13 @@ import Typewriter from "typewriter-effect";
 import Button from "./Button";
 
 const Title = styled.h2`
-  font-size: ${(props) => props.theme.fontxxl};
+  font-size: 28px;
   text-transform: capitalize;
   width: 100%;
   /* padding-bottom: 100px; */
-  color: ${(props) => props.theme.text};
+  color: white;
   align-self: flex-start;
+  align-items: center;
 
   span {
     text-transform: uppercase;
@@ -72,7 +73,10 @@ const TypeWriterText = () => {
   return (
     <>
       <Title>
-        Discover a new era of cool
+        1 free plus gas fees per wallet
+        <div>need to save more ? : 0.006969 ETH 3 max per wallet </div>
+        <div>#findthelostmeeble</div>
+        <div>#SaveMeeble</div>
         <Typewriter
           options={{
             autoStart: true,
@@ -80,20 +84,23 @@ const TypeWriterText = () => {
           }}
           onInit={(typewriter) => {
             typewriter
-              .typeString(`<span class="text-1">NFTs.</span>`)
+              .typeString(`<span class="text-1">Nuu DISCOD.</span>`)
               .pauseFor(2000)
               .deleteAll()
-              .typeString(`<span class="text-2">Collectible Items.</span>`)
+              .typeString(`<span class="text-2">Nuu RODMARP.</span>`)
               .pauseFor(2000)
               .deleteAll()
-              .typeString(`<span class="text-3">Ape Killers!</span>`)
+              .typeString(`<span class="text-3">Nuu UTILITY.</span>`)
+              .pauseFor(2000)
+              .deleteAll()
+              .typeString(`<span class="text-3">JUST VIB 'N CCo</span>`)
               .pauseFor(2000)
               .deleteAll()
               .start();
           }}
         />
       </Title>
-      <SubTitle>Bored Of Apes? Try Something New.</SubTitle>
+      <SubTitle>TEAM RESERVE : 669 BECUASE WE NEED TOO</SubTitle>
       <ButtonContainer>
         <Button text="Explore" link="#home" />
       </ButtonContainer>
