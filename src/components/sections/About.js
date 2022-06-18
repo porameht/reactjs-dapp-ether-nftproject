@@ -47,6 +47,7 @@ const Container = styled.div`
     }
   }
 `;
+
 const Box = styled.div`
   width: 50%;
   height: 100%;
@@ -134,6 +135,23 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const ContainerFooter = styled.div`
+  width: 75%;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid ${(props) => props.theme.text};
+
+  @media (max-width: 48em) {
+    width: 90%;
+    h1 {
+      font-size: ${(props) => props.theme.fontxxxl};
+    }
+  }
+`;
+
 const About = () => {
   return (
     <Section id="about">
@@ -158,23 +176,6 @@ const About = () => {
             ambitious ever-growing community with multiple benefits and
             utilities.
           </SubTextLight>
-
-          <span>
-            &copy; {new Date().getFullYear()} Meeble Club. All rights reserved.
-          </span>
-          <ButtonContainer>
-            <img src={LogoFooter} width="70"></img>
-            <span>
-              Made with &#10084; by{" "}
-              <a
-                href="http://youtube.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Meeble
-              </a>
-            </span>
-          </ButtonContainer>
         </Box>
       </Container>
     </Section>

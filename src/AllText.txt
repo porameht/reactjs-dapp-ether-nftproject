@@ -50,3 +50,41 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veritatis ius
 
 
 
+<Left>
+          {/* <Logo /> */}
+          <IconList>
+            <a
+              href="http://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="facebook"
+            >
+              <Facebook />
+            </a>
+            <a
+              href="https://www.instagram.com/code.bucks/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="instagram"
+            >
+              <Instagram />
+            </a>
+            <a
+              href="https://twitter.com/code_bucks"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="twitter"
+            >
+              <Twitter />
+            </a>
+            <a
+              href="http://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="linkedin"
+            >
+              <LinkedIn />
+            </a>
+          </IconList>
+        </Left>
+ 

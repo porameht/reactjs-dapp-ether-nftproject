@@ -7,6 +7,7 @@ import Home from "./components/sections/Home";
 import { useState } from "react";
 
 import ScrollToTop from "./components/ScrollToTop";
+import Footer from "./components/Footer";
 
 function App() {
   const [accounts, setAccounts] = useState([]);
@@ -20,6 +21,7 @@ function App() {
         <About />
         {/* <ScrollToTop scrollPosition={y}/> */}
         <ScrollToTop /> {/* </Suspense> */}
+        <Footer />
       </ThemeProvider>
     </main>
   );
