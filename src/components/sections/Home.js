@@ -7,8 +7,7 @@ import Twitter from "../../assets/social-media-icons/twitter.png";
 import Ether from "../../assets/social-media-icons/Ether_logo.png";
 import OpenSea from "../../assets/social-media-icons/Opensea_logo.png";
 //-----------------------------------//
-// import CoverVideo from '../CoverVideo'
-// import TypeWriterText from '../TypeWriterText'
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import RoundTextBlack from "../../assets/Rounded-Text-Black.png";
 import Loading from "../Loading";
 import img from "../../assets/bg.gif";
@@ -399,7 +398,8 @@ const Home = ({ accounts, setAccounts }) => {
           </div>
         ) : (
           <div>
-            <Button text="Connect Wallet" onClick={connectAccount} />
+            <ConnectButton />
+            {/* <Button text="Connect Wallet" onClick={connectAccount} /> */}
           </div>
         )}
       </NavBar>

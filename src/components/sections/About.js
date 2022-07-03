@@ -10,17 +10,18 @@ const Carousel = lazy(() => import("../Carousel"));
 
 const Section = styled.section`
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   /* opacity: 0.9; */
   background-color: ${(props) => props.theme.text};
   background-image: url(${img});
   background-size: cover;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
+
 const Container = styled.div`
   width: 75%;
   margin: 0 auto;
@@ -120,24 +121,10 @@ const SubTextLight = styled.p`
     font-size: ${(props) => props.theme.fontxs};
   }
 `;
-const ButtonContainer = styled.div`
-  width: 80%;
-  margin: 1rem auto;
-  display: flex;
-  align-self: flex-start;
-
-  @media (max-width: 64em) {
-    width: 100%;
-
-    button {
-      margin: 0 auto;
-    }
-  }
-`;
 
 const ContainerFooter = styled.div`
   width: 75%;
-  margin: 2rem auto;
+  margin: 0.5rem auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -148,6 +135,25 @@ const ContainerFooter = styled.div`
     width: 90%;
     h1 {
       font-size: ${(props) => props.theme.fontxxxl};
+    }
+  }
+`;
+const Bottom = styled.div`
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    text-decoration: underline;
+  }
+  @media (max-width: 48em) {
+    flex-direction: column;
+    width: 100%;
+
+    span {
+      margin-bottom: 1rem;
     }
   }
 `;
@@ -178,6 +184,22 @@ const About = () => {
           </SubTextLight>
         </Box>
       </Container>
+      <ContainerFooter></ContainerFooter>
+      <Bottom>
+        <span>
+          &copy; {new Date().getFullYear()} Weirdos Club. All rights reserved.
+        </span>
+        <span>
+          Made with &#10084; by{" "}
+          <a
+            href="http://youtube.com/codebucks"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CodeBucks
+          </a>
+        </span>
+      </Bottom>
     </Section>
   );
 };
