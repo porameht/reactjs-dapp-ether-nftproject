@@ -3,7 +3,7 @@
 export const light = {
   body: "#fff",
   text: "#202020", // black shade
-  bodyRgba: "255, 255, 255",
+  bodyRgba: "3F78DC",
   textRgba: "32,32,32",
 
   carouselColor: "#EEEDDE",

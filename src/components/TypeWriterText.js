@@ -62,13 +62,13 @@ const Title = styled.h2`
 `;
 const SubTitle = styled.h3`
   font-size: ${(props) => props.theme.fontmd};
-  text-shadow : 1px 1px grey;
+  text-shadow: 1px 1px grey;
   color: ${(props) => `rgba(${props.theme.textRgba}, 0.2)`};
   font-weight: 600;
   margin-bottom: 1rem;
   width: 80%;
   align-self: center;
-  align-tem :center;
+  align-tem: center;
 
   @media (max-width: 40em) {
     font-size: ${(props) => props.theme.fontsm};
@@ -98,10 +98,9 @@ const TypeWriterText = () => {
     <>
       <Title>
         1 free plus gas fees per wallet
-        <div>Want to find more? : 0.006969 ETH <br />
-        6 max per wallet </div>
-        
-        
+        <div>
+          Want to find more? : 0.006969 ETH <br />6 max per wallet{" "}
+        </div>
         <Typewriter
           options={{
             autoStart: true,
@@ -193,10 +192,13 @@ const TypeWriterText = () => {
           }}
         />
       </Title>
-      <SubTitle style={{color:"black"}}>TEAM RESERVE : 669 BECUASE WE NEED TOO</SubTitle>
-      <ButtonContainer>
-        <Button text="MINT"  link="#home" />
-      </ButtonContainer>
+      <SubTitle style={{ color: "black" }}>
+        TEAM RESERVE : 669 BECUASE WE NEED TOO
+      </SubTitle>
+      {/* <ButtonContainer>
+        <Button text="MINT" link="#home" />
+      </ButtonContainer> */}
+      
     </>
   );
 };

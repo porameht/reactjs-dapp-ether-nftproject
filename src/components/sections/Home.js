@@ -1,7 +1,6 @@
 import React, { useState, lazy, Suspense, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 //------------------------------------//
-import Button from "../Button";
 import Logo from "../Logo";
 import Twitter from "../../assets/social-media-icons/twitter(1).png";
 import Ether from "../../assets/social-media-icons/Etherscan1.png";
@@ -10,13 +9,15 @@ import Lookrere from "../../assets/social-media-icons/lookrare1.png";
 import X2Y2 from "../../assets/social-media-icons/x2y2.png";
 //-----------------------------------//
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import RoundTextBlack from "../../assets/Rounded-Text-Black.png";
 import Loading from "../Loading";
 import img from "../../assets/bg.gif";
-import Footer from "../Footer";
 
-const CoverVideo = lazy(() => import("../CoverVideo"));
+import { ethers, BigNumber } from "ethers";
+import meebleNFT from "../../meebleNFT.json";
+import { Button, Flex, Input, Text } from "@chakra-ui/react";
+
 const TypeWriterText = lazy(() => import("../TypeWriterText"));
+const meebleNFTAddress = "0xE38D6DF722b2AaCCDF090b20942267Bb97Df8649";
 
 //-------------------------------------------------//
 
@@ -39,6 +40,7 @@ const NavBar = styled.nav`
     }
   }
 `;
+
 const Menu = styled.ul`
   display: flex;
   justify-content: space-between;
@@ -244,82 +246,6 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const rotate = keyframes`
-100%{
-  transform: rotate(1turn);
-}
-`;
-
-const Round = styled.div`
-  position: absolute;
-  bottom: -2rem;
-  right: 100%;
-  width: 6rem;
-  height: 4rem;
-  /* border: 1px solid ${(props) => props.theme.text}; */
-  border-radius: 50%;
-
-  /* img {
-    width: 100%;
-    height: auto;
-    animation: ${rotate} 6s linear infinite reverse;
-  } */
-  @media (max-width: 64em) {
-    width: 4rem;
-    height: 4rem;
-    left: none;
-    right: 2rem;
-    bottom: 100%;
-  }
-  @media (max-width: 48em) {
-    right: 1rem;
-  }
-`;
-
-const SubTitle = styled.h3`
-  font-size: ${(props) => props.theme.fontlg};
-  text-transform: capitalize;
-  color: ${(props) => `rgba(${props.theme.textRgba}, 0.6)`};
-  font-weight: 600;
-  margin-bottom: 1rem;
-  bottom: 2rem;
-  right: 90%;
-  width: 80%;
-  align-self: flex-start;
-
-  @media (max-width: 40em) {
-    font-size: ${(props) => props.theme.fontmd};
-  }
-
-  @media (max-width: 48em) {
-    align-self: center;
-    text-align: center;
-  }
-`;
-
-const Circle = styled.span`
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  background-color: ${(props) => props.theme.text};
-  color: ${(props) => props.theme.body};
-  font-size: ${(props) => props.theme.fontxl};
-
-  @media (max-width: 64em) {
-    width: 2rem;
-    height: 2rem;
-    font-size: ${(props) => props.theme.fontlg};
-  }
-`;
 
 const Home = ({ accounts, setAccounts }) => {
   const isConnected = Boolean(accounts[0]);
@@ -333,20 +259,42 @@ const Home = ({ accounts, setAccounts }) => {
     }
   }
   // ---------------------------------------------------------------- //
-  const [click, setClick] = useState(false);
+  const [mintAmount, setMintAmount] = useState(1);
+  async function handleMint() {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        meebleNFTAddress,
+        meebleNFT.abi,
+        signer
+      );
+      try {
+        const response = await contract.mint(BigNumber.from(mintAmount), {
+          value: ethers.utils.parseEther((0.03 * mintAmount).toString()),
+        });
+        console.log("response:", response);
+      } catch (err) {
+        console.log("error: ", err);
+      }
+    }
+  }
 
-  // const scrollTo = (id) => {
-  //   let element = document.getElementById(id);
-  //   element.scrollIntoView({
-  //     behavior: "smooth",
-  //     block: "start",
-  //     inline: "nearest",
-  //   });
-  //   setClick(!click);
-  // };
+  const handleDecrement = () => {
+    if (mintAmount <= 1) return;
+    setMintAmount(mintAmount - 1);
+  };
+
+  const handleIncrement = () => {
+    if (mintAmount >= 3) return;
+    setMintAmount(mintAmount + 1);
+  };
+
+  // ------------------------------------------------------------------ //
+
+  const [click, setClick] = useState(false);
   const [offsetY, setOffsetY] = useState(0);
   const handleScroll = () => setOffsetY(window.pageYOffset);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -363,8 +311,6 @@ const Home = ({ accounts, setAccounts }) => {
         </HamburgerMenu>
 
         <Menu click={click}>
-          {/* <MenuItem onClick={() => scrollTo("home")}></MenuItem>
-          <MenuItem onClick={() => scrollTo("about")}></MenuItem> */}
           <MenuItem>
             <a
               href="https://twitter.com/TheLostMeebles"
@@ -436,12 +382,28 @@ const Home = ({ accounts, setAccounts }) => {
 
         {isConnected ? (
           <div>
-            <p>Connected</p>
+            <Box margin="0 15px">
+              <Text fontSize="25px" color="#7FFF01">
+                Connected
+              </Text>
+            </Box>
           </div>
         ) : (
           <div>
-            <ConnectButton />
-            {/* <Button text="Connect Wallet" onClick={connectAccount} /> */}
+            {/* <ConnectButton /> */}
+            <Button
+              backgroundColor="#4079DC"
+              borderRadius="5px"
+              boxShadow="0px 2px 2px 1px #0F0F0F"
+              color="white"
+              cursor="pointer"
+              fontFamily="inherit"
+              padding="15px"
+              margin="0 15px"
+              onClick={connectAccount}
+            >
+              Connect Wellet
+            </Button>
           </div>
         )}
       </NavBar>
@@ -451,6 +413,77 @@ const Home = ({ accounts, setAccounts }) => {
         <Box>
           <Suspense fallback={<Loading />}>
             <TypeWriterText />
+
+            {isConnected ? (
+              <div>
+                <Flex align="center" justify="center">
+                  <Button
+                    backgroundColor="#4079DC"
+                    borderRadius="5px"
+                    boxShadow="0px 2px 2px 1px #0F0F0F"
+                    color="white"
+                    width="90px"
+                    cursor="pointer"
+                    fontFamily="inherit"
+                    padding="15px"
+                    marginTop="10px"
+                    onClick={handleDecrement}
+                  >
+                    <Text>decrease</Text>
+                  </Button>
+                  <Input
+                    readOnly
+                    fontFamily="inherit"
+                    width="80px"
+                    height="40px"
+                    textAlign="center"
+                    paddingLeft="15px"
+                    marginTop="10px"
+                    type="number"
+                    value={mintAmount}
+                  />
+                  <Button
+                    backgroundColor="#4079DC"
+                    borderRadius="5px"
+                    boxShadow="0px 2px 2px 1px #0F0F0F"
+                    width="90px"
+                    color="white"
+                    cursor="pointer"
+                    fontFamily="inherit"
+                    padding="15px"
+                    marginTop="10px"
+                    onClick={handleIncrement}
+                  >
+                    <Text>increase</Text>
+                  </Button>
+                </Flex>
+                <Button
+                  backgroundColor="#4079DC"
+                  borderRadius="5px"
+                  boxShadow="0px 2px 2px 1px #0F0F0F"
+                  color="white"
+                  cursor="pointer"
+                  fontFamily="inherit"
+                  padding="15px"
+                  marginTop="10px"
+                  marginLeft="103px"
+                  onClick={handleMint}
+                >
+                  MINT
+                </Button>
+              </div>
+            ) : (
+              <Text
+                marginTop="70px"
+                fontSize="30px"
+                letterSpacing="-5.5%"
+                fontFamily="VT323"
+                textShadow="0 3px #0F0F0F"
+                color="#FFFFFF"
+              >
+                You must connected to Mint.
+              </Text>
+            )}
           </Suspense>
         </Box>
         <Box>

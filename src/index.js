@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "../node_modules/normalize.css/normalize.css";
 import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 
 // import reportWebVitals from './reportWebVitals';
 

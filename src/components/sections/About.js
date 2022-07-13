@@ -135,26 +135,6 @@ const SubText = styled.p`
     font-size: ${(props) => props.theme.fontsm};
   }
 `;
-const SubTextLight = styled.p`
-  font-size: ${(props) => props.theme.fontmd};
-  color: ${(props) => `rgba(${props.theme.bodyRgba},0.6)`};
-  align-self: flex-start;
-  width: 80%;
-  margin: 1rem auto;
-  font-weight: 400;
-
-  @media (max-width: 64em) {
-    width: 100%;
-    text-align: center;
-    font-size: ${(props) => props.theme.fontsm};
-  }
-  @media (max-width: 40em) {
-    font-size: ${(props) => props.theme.fontsm};
-  }
-  @media (max-width: 30em) {
-    font-size: ${(props) => props.theme.fontxs};
-  }
-`;
 
 const ContainerFooter = styled.div`
   width: 95%;
@@ -175,31 +155,27 @@ const ContainerFooter = styled.div`
 
 const Bottom = styled.div`
   width: 85%;
-  margin :0 auto;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 21px ;
+  font-size: 21px;
   text-shadow: 2px 2px grey;
 
   a {
     text-decoration: underline;
   }
-  
-  @media (max-width: 64em) 
-  {
-    font-size: 18px ;
+
+  @media (max-width: 64em) {
+    font-size: 18px;
   }
-  @media (max-width : 36em)
-  {
-    flex-direction : column;
+  @media (max-width: 36em) {
+    flex-direction: column;
     text-align: center;
-    font-size: 18px ;
-  }  
-    span {
-      padding-bottom: 0px;
-      
-    }
+    font-size: 18px;
+  }
+  span {
+    padding-bottom: 0px;
   }
 `;
 
@@ -274,8 +250,7 @@ const About = () => {
             <img src={LogoFooter} width="150px"></img>
           </a>
         </span>
-        <span style={{ color: "black" }}>
-          {" "}
+        <span style={{ paddingLeft: "20px", color: "black" }}>
           Da mother and da father of meeble has waived all copyright and related
           rights to da lost meeble
         </span>

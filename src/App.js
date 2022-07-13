@@ -8,7 +8,7 @@ import { useState } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import "@rainbow-me/rainbowkit/styles.css";
-
+import TypeWriterText from "./components/TypeWriterText";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -29,6 +29,7 @@ const wagmiClient = createClient({
   connectors,
   provider,
 });
+
 function App() {
   const [accounts, setAccounts] = useState([]);
 
@@ -41,7 +42,6 @@ function App() {
             {/* <Suspense fallback={<Loading />}> */}
             <Home accounts={accounts} setAccounts={setAccounts} />
             <About />
-          
             {/* <ScrollToTop scrollPosition={y}/> */}
             <ScrollToTop /> {/* </Suspense> */}
             {/* <Footer /> */}
