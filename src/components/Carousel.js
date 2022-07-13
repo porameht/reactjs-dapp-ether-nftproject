@@ -26,12 +26,12 @@ const Container = styled.div`
   width: 25vw;
   height: 50vh;
 
-  @media (max-width: 70em) {
-    height: 60vh;
+  @media (max-width: 75em) {
+    height: 40vh;
   }
 
   @media (max-width: 64em) {
-    height: 50vh;
+    height: 40vh;
     width: 30vw;
   }
   @media (max-width: 48em) {

@@ -1,16 +1,20 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 //------------------------------------//
 import Button from "../Button";
 import Logo from "../Logo";
-import Twitter from "../../assets/social-media-icons/twitter.png";
-import Ether from "../../assets/social-media-icons/Ether_logo.png";
-import OpenSea from "../../assets/social-media-icons/Opensea_logo.png";
+import Twitter from "../../assets/social-media-icons/twitter(1).png";
+import Ether from "../../assets/social-media-icons/Etherscan1.png";
+import OpenSea from "../../assets/social-media-icons/Opensea1.png";
+import Lookrere from "../../assets/social-media-icons/lookrare1.png";
+import X2Y2 from "../../assets/social-media-icons/x2y2.png";
 //-----------------------------------//
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import RoundTextBlack from "../../assets/Rounded-Text-Black.png";
 import Loading from "../Loading";
 import img from "../../assets/bg.gif";
+import Footer from "../Footer";
+
 const CoverVideo = lazy(() => import("../CoverVideo"));
 const TypeWriterText = lazy(() => import("../TypeWriterText"));
 
@@ -20,7 +24,7 @@ const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 85%;
+  width: 95%;
   /* height: ${(props) => props.theme.navHeight}; */
   margin: 0 auto;
   .mobile {
@@ -44,7 +48,7 @@ const Menu = styled.ul`
   @media (max-width: 64em) {
     /* 1024 px */
     position: fixed;
-    top: ${(props) => props.theme.navHeight};
+    top: 150px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -54,7 +58,7 @@ const Menu = styled.ul`
     background-color: ${(props) => `rgba(${props.theme.bodyRgba},0.85)`};
     backdrop-filter: blur(2px);
     transform: ${(props) =>
-      props.click ? "translateY(0)" : `translateY(1000%)`};
+      props.click ? "translateY(0)" : `translateY(100%)`};
     transition: all 0.3s ease;
     flex-direction: column;
     justify-content: center;
@@ -145,7 +149,7 @@ const HamburgerMenu = styled.span`
   height: 2px;
   background: ${(props) => props.theme.text};
   position: absolute;
-  top: 2rem;
+  top: 4rem;
   left: 50%;
   transform: ${(props) =>
     props.click
@@ -196,10 +200,23 @@ const Section = styled.section`
   position: relative;
   background-image: url(${img});
   background-size: cover;
+  background-position: center;
+  // @media (max-width: 64em) {
+  //   /* 1024 px */
+  //   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
+  // width: 100vw;
+  // height: 100vh;
+  // /* min-height: 100vh;
+  // width: 100%; */
+  // position: relative;
+  // background-image: url(${img});
+  // background-size: cover ;
+  // background-position : center;
+  // }
 `;
 
 const Container = styled.div`
-  width: 75%;
+  width: 85%;
   min-height: 50vh;
   margin: 0 auto;
 
@@ -236,9 +253,9 @@ const rotate = keyframes`
 const Round = styled.div`
   position: absolute;
   bottom: -2rem;
-  right: 90%;
+  right: 100%;
   width: 6rem;
-  height: 6rem;
+  height: 4rem;
   /* border: 1px solid ${(props) => props.theme.text}; */
   border-radius: 50%;
 
@@ -327,9 +344,16 @@ const Home = ({ accounts, setAccounts }) => {
   //   });
   //   setClick(!click);
   // };
+  const [offsetY, setOffsetY] = useState(0);
+  const handleScroll = () => setOffsetY(window.pageYOffset);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <Section id="home">
+    <Section id="home" style={{ transform: `translateY(${offsetY * 0.15}px)` }}>
       {/*  */}
 
       <NavBar>
@@ -343,11 +367,11 @@ const Home = ({ accounts, setAccounts }) => {
           <MenuItem onClick={() => scrollTo("about")}></MenuItem> */}
           <MenuItem>
             <a
-              href="http://youtube.com/"
+              href="https://twitter.com/TheLostMeebles"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={Twitter} width="80px"></img>
+              <img src={Twitter} width="60px"></img>
             </a>
           </MenuItem>
           <MenuItem>
@@ -356,7 +380,7 @@ const Home = ({ accounts, setAccounts }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={Ether} width="80px"></img>
+              <img src={Ether} width="60px"></img>
             </a>
           </MenuItem>
           <MenuItem>
@@ -365,7 +389,25 @@ const Home = ({ accounts, setAccounts }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={OpenSea} width="70px"></img>
+              <img src={OpenSea} width="60px"></img>
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a
+              href="http://youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={Lookrere} width="60px"></img>
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a
+              href="http://youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={X2Y2} width="60px"></img>
             </a>
           </MenuItem>
 
@@ -405,7 +447,7 @@ const Home = ({ accounts, setAccounts }) => {
       </NavBar>
 
       {/*  */}
-      <Container>
+      <Container style={{ transform: `translateY(${offsetY * 0.25}px)` }}>
         <Box>
           <Suspense fallback={<Loading />}>
             <TypeWriterText />
@@ -415,10 +457,6 @@ const Home = ({ accounts, setAccounts }) => {
           <Suspense fallback={<Loading />}></Suspense>
         </Box>
       </Container>
-
-      <Round>
-        <SubTitle>Frankaa</SubTitle>
-      </Round>
     </Section>
   );
 };

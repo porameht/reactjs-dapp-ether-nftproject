@@ -9,9 +9,9 @@ export const light = {
   carouselColor: "#EEEDDE",
 
   fontxs: "0.75em",
-  fontsm: "0.875em",
-  fontmd: "1em", // 1em = 16px
-  fontlg: "1.25em",
+  fontsm: "1em",
+  fontmd: "1.25em", // 1em = 16px
+  fontlg: "1.5em",
   fontxl: "2em",
   fontxxl: "3em",
   fontxxxl: "4em",

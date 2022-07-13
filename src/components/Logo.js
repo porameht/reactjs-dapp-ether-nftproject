@@ -47,7 +47,7 @@ const Logo = () => {
       {/* <LogoText> */}
       <Link to="/">
         {/* <Meeble/> */}
-        <img src={Meeble} width="100px"></img>
+        <img src={Meeble} width="130px"></img>
       </Link>
       {/* </LogoText> */}
     </Left>

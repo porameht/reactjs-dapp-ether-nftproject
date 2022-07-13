@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import styled from "styled-components";
+import LogoFooter from "../assets/cc-zero.png";
 // import Banner from './Banner'
 import Logo from "./Logo";
 
@@ -12,9 +13,9 @@ import Loading from "./Loading";
 // const Banner = lazy(() => import("./Banner"));
 
 const Section = styled.section`
-  min-height: 100vh;
+  height: 12vh;
   width: 100vw;
-  background-color: ${(props) => props.theme.body};
+  background-color: #3F78DC;
   position: relative;
   color: ${(props) => props.theme.text};
 
@@ -94,6 +95,22 @@ const Item = styled.li`
     width: 100%;
   }
 `;
+const ContainerFooter = styled.div`
+  width: 95%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 2px solid ${(props) => props.theme.text};
+
+  @media (max-width: 48em) {
+    width: 90%;
+    h1 {
+      font-size: ${(props) => props.theme.fontxxxl};
+    }
+  }
+`;
 
 const Bottom = styled.div`
   width: 75%;
@@ -101,6 +118,7 @@ const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color : #3F78DC;
 
   a {
     text-decoration: underline;
@@ -128,21 +146,20 @@ const Footer = () => {
 
   return (
     <Section>
-      <Suspense fallback={<Loading />}>{/* <Banner />{" "} */}</Suspense>
-      <Container></Container>
+      <ContainerFooter></ContainerFooter>
       <Bottom>
         <span>
-          &copy; {new Date().getFullYear()} Weirdos Club. All rights reserved.
+        <a
+              href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={LogoFooter} width="100px"></img>
+        </a>
         </span>
-        <span>
-          Made with &#10084; by{" "}
-          <a
-            href="http://youtube.com/codebucks"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            CodeBucks
-          </a>
+        <span style = {{color:"orange"}}> Da mother and da father  of meeble has waived all copyright and related  rights  to da  lost meeble
+          
+           
         </span>
       </Bottom>
     </Section>
